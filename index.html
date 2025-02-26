@@ -1,184 +1,271 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <link href="./output.css" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-
-</head>
-<body class = "bg-gray-900 flex  flex-col items-center justify-center">
-    <!-- Score Display Section -->
-    <div class = "flex mt-5 ml-10 justify-end text-white z-0 flex-col w-full h-1/2 ">
+  </head>
+  <body class="bg-gray-900 flex flex-col items-center justify-center">
+    <!-- Main Container -->
+    <div class="flex flex-col items-center justify-center w-full h-full">
+      <!-- Score Display Section -->
+      <div class="flex mt-5 justify-center text-white z-0 mb-5 flex-col w-full h-1/2 md:ml-20 md:justify-end">
         <!-- Scoreboard container with purple border -->
-        <div class ="flex flex-col p-3 rounded-2xl border-2 border-fuchsia-300 w-1/6 h-1/4 ">
-            <h1 class = "flex text-xl justify-center">Score</h1>
-            <ul class = "pl-5 pb-2">
-                <li>Wins: </li>
-                <li>Losses: </li>
-                <li>Ties: </li>
-            </ul>
-            <div class = "flex justify-center">
-                <button onclick ="
-                   resetScore(); "
-                    class = " hover:bg-rose-400 ease-in-out duration-200 bg-rose-300 rounded-full justify-center text-center p-1 flex w-30 text-lg cursor-pointer ">Reset Score</button>
-            </div>
+        <div class="flex flex-col p-3 rounded-2xl border-2 border-fuchsia-300 w-full md:w-1/4 lg:w-1/8 h-1/4 shadow-lg shadow-white">
+          <h1 class="flex text-xl justify-center">Score</h1>
+          <ul class="flex gap-2 justify-center pb-2">
+            <li class="js-wins-tracker">Wins: 0</li>
+            <li class="js-losses-tracker">Losses: 0</li>
+            <li class="js-ties-tracker">Ties: 0</li>
+          </ul>
+          <div class="flex justify-center">
+            <button
+              onclick="resetScore();"
+              class="hover:bg-rose-400 ease-in-out duration-200 bg-rose-300 rounded-full justify-center text-center p-1 flex w-30 text-lg cursor-pointer"
+            >
+              Reset Score
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Game Interface Section -->
-    <div class="flex text-white z-5 flex-col justify-center align-center w-full h-full">
+      <!-- Game Interface Section -->
+      <div
+        class="flex text-white z-5 flex-col justify-center align-center w-full h-full"
+      >
         <!-- Title and game prompt -->
         <h1 class="text-4xl font-bold text-white text-center pt-4">Welcome!</h1>
-        <p class = "flex justify-center p-2">Rock, paper, or scissors?</p>
-        
+        <p class="flex justify-center p-2">Rock, paper, or scissors?</p>
+
         <!-- Game buttons container -->
-        <div class = "flex gap-5 p-4 pt-6 justify-center align-center">
-            <!-- Rock button with bounce animation -->
-            <button onclick =" 
-                 choice = 'rock';
-                 compChoice = Math.random();
-                shoot(choice, compChoice)" 
-                class = "rounded-full cursor-pointer border-3 border-green-400 p-10 hover:animate-bounce duration-300 ease-in-out" >
-                <i class="fa-solid fa-hand-rock fa-rotate-90 fa-2xl"></i>
-            </button>
-            
-            <!-- Paper button with bounce animation -->
-            <button onclick =" 
-                choice = 'paper';
-                compChoice = Math.random();
-                shoot(choice, compChoice)" 
-            class = "rounded-full cursor-pointer border-3 border-sky-400 p-10 hover:animate-bounce duration-300 ease-in-out">
-                <i class="fa-solid fa-hand fa-2xl"></i>
-            </button>
-            
-            <!-- Scissors button with bounce animation -->
-            <button onclick =" 
-                choice = 'scissors';
-                compChoice = Math.random();
-                shoot(choice, compChoice)" 
-             class = "rounded-full cursor-pointer border-3 pt-12 border-purple-400 p-10 hover:animate-bounce duration-300 ease-in-out">
-                <i class="fa-solid fa-hand-scissors fa-2xl"></i>
-            </button>
-        </div>
-    </div>
+        <div class="flex gap-5 p-4 pt-6 justify-center align-center">
+          <!-- Rock button with bounce animation -->
+          <button
+            onclick="choice = 'rock'; compChoice = Math.random(); shoot(choice, compChoice)"
+            class="rounded-full cursor-pointer border-3 border-green-400 p-10 hover:shadow-white hover:shadow-md hover:animate-bounce duration-300 ease-in-out"
+          >
+            <i class="fa-solid fa-hand-rock fa-rotate-90 fa-2xl"></i>
+          </button>
 
-    <!-- Player vs Computer Display Section -->
-    <div class = "flex w-full justify-center gap-15 text-white mt-10">
-        <div class = "flex flex-col">
-            <i class="fa-solid fa-8x fa-user"></i>
-            <h1 class = "text-center pt-4">You</h1>
-        </div>
+          <!-- Paper button with bounce animation -->
+          <button
+            onclick="choice = 'paper'; compChoice = Math.random(); shoot(choice, compChoice)"
+            class="rounded-full cursor-pointer border-3 border-sky-400 p-10 hover:animate-bounce hover:shadow-white hover:shadow-md duration-300 ease-in-out"
+          >
+            <i class="fa-solid fa-hand fa-2xl"></i>
+          </button>
 
-        <h1 class = "flex justify-center text-3xl items-center "> vs </h1>
-        
-            <div class = "flex flex-col">
-                <i class=" fa-solid fa-8x fa-robot"></i>
-                <h2 class = "text-center pt-4">Computer</h2>
+          <!-- Scissors button with bounce animation -->
+          <button
+            onclick="choice = 'scissors'; compChoice = Math.random(); shoot(choice, compChoice)"
+            class="rounded-full cursor-pointer border-3 pt-12 border-purple-400 p-10 hover:animate-bounce hover:shadow-white hover:shadow-md duration-300 ease-in-out"
+          >
+            <i class="fa-solid fa-hand-scissors fa-2xl"></i>
+          </button>
         </div>
+      </div>
+
+      <!-- Player vs Computer Display Section -->
+      <div class="flex flex-col justify-center gap-15 text-white w-full mt-10">
+        <div class="flex flex-row w-full justify-center gap-12 text-white">
+          <div class="flex flex-col">
+            <h1 class="text-center pb-4">You</h1>
+            <i class="fa-solid text-emerald-300 text-9xl fa-user"></i>
+            <div class="text-center flex justify-center pt-4">
+              <i
+                class="js-player-rock invisible fa-solid fa-hand-rock fa-rotate-90 text-6xl rotate-90 text-emerald-300 absolute fa-bounce"
+              ></i>
+              <i
+                class="js-player-paper invisible fa-solid fa-hand text-6xl text-emerald-300 fa-beat absolute"
+              ></i>
+              <i
+                class="js-player-scissors invisible fa-solid fa-hand-scissors fa-beat rotate-180 scale-y-[-1] text-6xl text-emerald-300 absolute"
+              ></i>
+            </div>
+          </div>
+
+          <div
+            class="centered text-center align-center justify-center flex flex-col"
+          >
+            <h1 class="text-3xl">vs</h1>
+            <p
+              class="js-result w-30 result fa-fade flex justify-center items-center text-center mt-3 text-2xl"
+            ></p>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="text-center pb-4">Computer</h2>
+            <i class="fa-solid text-9xl text-red-300 fa-robot"></i>
+            <div class="text-center flex justify-center pt-4">
+              <i
+                class="js-computer-rock invisible fa-solid fa-hand-rock text-6xl rotate-270 fa-bounce scale-x-[-1] text-red-300 absolute"
+              ></i>
+              <i
+                class="js-computer-paper invisible fa-solid fa-hand text-6xl fa-beat text-red-300 absolute"
+              ></i>
+              <i
+                class="js-computer-scissors invisible fa-solid fa-hand-scissors fa-beat text-6xl text-red-300 absolute"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- External Scripts -->
-    <script src="https://kit.fontawesome.com/fe957e8a0d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/fe957e8a0d.js"
+      crossorigin="anonymous"
+    ></script>
     <script>
+      // Object to keep track of game scores - either local score or default value
+      let score = JSON.parse(localStorage.getItem("score")) || {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+      };
 
-        // Object to keep track of game scores - either local score or default value
-        let score = JSON.parse(localStorage.getItem('score')) || {
-            wins: 0,
-            losses: 0,
-            ties: 0
+      // Keep score updated after refresh
+      const updateScoreboard = () => {
+        document.querySelector(
+          ".js-wins-tracker"
+        ).textContent = `Wins: ${score.wins}`;
+        document.querySelector(
+          ".js-losses-tracker"
+        ).textContent = `Losses: ${score.losses}`;
+        document.querySelector(
+          ".js-ties-tracker"
+        ).textContent = `Ties: ${score.ties}`;
+      };
+
+      updateScoreboard();
+
+      /**
+       * Main game function that handles the game logic
+       * @param {string} choice - Player's choice (rock, paper, or scissors)
+       * @param {number} compChoice - Random number used to determine computer's choice
+       */
+      function shoot(choice, compChoice) {
+        let result = "";
+        // Remove last choice
+        removeIcons();
+        compChoice = pickMove(choice, compChoice);
+
+        // Define the outcomes using a map
+        const outcomes = {
+          rock: { rock: "Tie!", paper: "You Lose!", scissors: "You Win!" },
+          paper: { rock: "You Win!", paper: "Tie!", scissors: "You Lose!" },
+          scissors: { rock: "You Lose!", paper: "You Win!", scissors: "Tie!" },
         };
 
-        /**
-         * Main game function that handles the game logic
-         * @param {string} choice - Player's choice (rock, paper, or scissors)
-         * @param {number} compChoice - Random number used to determine computer's choice
-         */
-        function shoot(choice, compChoice){
-            let result = "";
-            compChoice = pickMove(compChoice)
-            
-            // Compare player's choice with computer's choice to determine winner
-            if(compChoice === choice) {
-                result = "Tie!"
-            }
-            else if (compChoice === "rock" && choice === "paper") {
-                result = "You Win!"
-            }
-            else if (compChoice === "rock" && choice === "scissors") {
-                result = "You Lose!"
-            }
-            else if (compChoice === "paper" && choice === "rock") {
-                result = "You Lose!"
-            }
-            else if (compChoice === "paper" && choice === "scissors") {
-                result = "You Win!"
-            }
-            else if (compChoice === "scissors" && choice === "rock") {
-                result = "You Win!"
-            }
-            else if (compChoice === "scissors" && choice === "paper") {
-                result = "You Lose!"
-            }
+        // Determine the result, find idex
+        result = outcomes[choice][compChoice];
+        document.querySelector(".js-result").textContent = result;
 
-            // Update the score based on the result
-            updateScore(result)
+        // Update the score based on the result
+        updateScore(result);
+      }
 
-            // Display the game result and updated score
-            alert(`You chose ${choice}. Computer chose ${compChoice}. ${result} \nWins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}` )
+      /**
+       * Converts random number to computer's move choice
+       * @param {number} compChoice - Random number between 0 and 1
+       * @returns {string} The computer's move (rock, paper, or scissors)
+       */
+      function pickMove(choice, compChoice) {
+        const choices = ["rock", "paper", "scissors"];
+
+        const computerIcons = {
+          rock: document.querySelector(".js-computer-rock"),
+          paper: document.querySelector(".js-computer-paper"),
+          scissors: document.querySelector(".js-computer-scissors"),
+        };
+
+        const playerIcons = {
+          rock: document.querySelector(".js-player-rock"),
+          paper: document.querySelector(".js-player-paper"),
+          scissors: document.querySelector(".js-player-scissors"),
+        };
+
+        // Determine computer's choice
+        compChoice = choices[Math.floor(compChoice * 3)];
+        computerIcons[compChoice].classList.remove("invisible");
+
+        // Display the player's choice
+        playerIcons[choice].classList.remove("invisible");
+
+        return compChoice;
+      }
+
+      function removeIcons() {
+        //remove icons
+        document.querySelector(".js-computer-rock").classList.add("invisible");
+        document.querySelector(".js-computer-paper").classList.add("invisible");
+        document
+          .querySelector(".js-computer-scissors")
+          .classList.add("invisible");
+        document.querySelector(".js-player-rock").classList.add("invisible");
+        document.querySelector(".js-player-paper").classList.add("invisible");
+        document
+          .querySelector(".js-player-scissors")
+          .classList.add("invisible");
+
+        //remove result
+        document.querySelector(".js-result").textContent = "";
+      }
+      /**
+       * Updates the score based on the game result
+       * @param {string} result - The result of the game ("You Win!", "You Lose!", or "Tie!")
+       */
+      function updateScore(result) {
+        switch (result) {
+          case "You Win!":
+            score.wins++;
+            document.querySelector(
+              ".js-wins-tracker"
+            ).textContent = `Wins: ${score.wins}`;
+            break;
+          case "You Lose!":
+            score.losses++;
+            document.querySelector(
+              ".js-losses-tracker"
+            ).textContent = `Losses: ${score.losses}`;
+            break;
+          case "Tie!":
+            score.ties++;
+            document.querySelector(
+              ".js-ties-tracker"
+            ).textContent = `Ties: ${score.ties}`;
+            break;
         }
 
-        /**
-         * Converts random number to computer's move choice
-         * @param {number} compChoice - Random number between 0 and 1
-         * @returns {string} The computer's move (rock, paper, or scissors)
-         */
-        function pickMove(compChoice) {
-            // Divide the random number range into three equal parts
-            if(compChoice >= 0 && compChoice < 1/3) {
-                compChoice = "rock"
-            }
-            else if (compChoice >= 1/3 && compChoice < 2/3)
-            {
-                compChoice = "paper"
-            }
-            else {
-                compChoice = "scissors"
-            }
+        // Save in local storage
+        localStorage.setItem("score", JSON.stringify(score));
+      }
 
-            return compChoice;
-        }
+      function resetScore() {
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
 
-        /**
-         * Updates the score based on the game result
-         * @param {string} result - The result of the game ("You Win!", "You Lose!", or "Tie!")
-         */
-        function updateScore(result) {
-            if(result === 'You Win!') {
-                score.wins++
-            }
-            else if(result === "You Lose!") {
-                score.losses++
-            }
-            else {
-                score.ties++
-            }
+        //possibly a better way to do this
+        document.querySelector(
+          ".js-wins-tracker"
+        ).textContent = `Wins: ${score.wins}`;
+        document.querySelector(
+          ".js-losses-tracker"
+        ).textContent = `Losses: ${score.losses}`;
+        document.querySelector(
+          ".js-ties-tracker"
+        ).textContent = `Ties: ${score.ties}`;
 
-            // Save in local storage
-            localStorage.setItem('score', JSON.stringify(score))
-        }
+        //remove icons
+        removeIcons();
 
-        function resetScore() {
-            score.wins = 0;
-            score.losses = 0;
-            score.ties = 0;
-
-            //remove from local storage
-            localStorage.removeItem('score'); 
-        }
-
+        //remove from local storage
+        localStorage.removeItem("score");
+      }
     </script>
-</body>
+  </body>
 </html>
